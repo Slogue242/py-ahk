@@ -7,26 +7,34 @@ import win32clipboard
 current = set()
 kb = Controller()
 
+#Creates the request function
 def req():
 	try:
+		#Opens and reads the clipboard data. This then closes it so other programs can then use the clipboard again.
 		win32clipboard.OpenClipboard()
 		data = win32clipboard.GetClipboardData()
 		win32clipboard.CloseClipboard()
-
+		
+		#This grabs the users name from data. This will later be used for filling out affected end user
 		stripping = data.split("\n")[0]
 		get_name = stripping.split("Name: ")[-1]
-
+		
+		#Splitting the users first name and last name so they are different items
 		lname = get_name.split(' ', 1)
 
 		em_list = []
-
+		
+		#Appending the names to the above empty list
 		for item in lname:
 			strip_word = item.strip()
 			em_list.append(strip_word)
-
+		
 		cleaning = data.strip('\r')
-
+		
+		#Fills out affected end user and tabs down to assignee
 		kb.type(f"{em_list[-1]}, {em_list[0]}\t\t\t\t\t\tLogue, Shane\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		#This write out each line that is found in the clipboard. Had to do it this way as kb.type was inserting random new lines.
+		#This way hopefully prevents this from happening
 		for item in cleaning:
 			clean = item.strip('\n')
 			kb.type(rf"{clean}")
@@ -63,7 +71,7 @@ def incident():
 	except:
 		pass
 
-
+#Check what each key does
 def on_press(key):
 	if key == Key.page_up:
 		req()
@@ -71,6 +79,6 @@ def on_press(key):
 		incident()
 	else:
 		pass
-
+#Starts listening for key presses
 with keyboard.Listener(on_press=on_press) as listener:
 	listener.join()
