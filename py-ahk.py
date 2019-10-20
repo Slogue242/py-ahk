@@ -33,10 +33,11 @@ def req():
 		cleaning = data.strip('\r')
 		
 		#Fills out affected end user and tabs down to assignee
+		#Have put time.sleep in to let R12 load data properly. Found script would sometimes fail because it didn't load fast enough.
 		kb.type(f"{em_list[-1]}, {em_list[0]}")
-		time.sleep(.5)
+		time.sleep(1)
 		kb.type("\t\t\t\t\t\tLogue, Shane")
-		time.sleep(.5)
+		time.sleep(1)
 		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
 		#This write out each line that is found in the clipboard. Had to do it this way as kb.type was inserting random new lines.
 		#This way hopefully prevents this from happening
@@ -73,9 +74,9 @@ def incident():
 		cleaning = data.strip('\r')
 
 		kb.type(f"{em_list[-1]}, {em_list[0]}")
-		time.sleep(.5)
+		time.sleep(1)
 		kb.type("\t\t\t\t\t\tLogue, Shane")
-		time.sleep(.5)
+		time.sleep(1)
 		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
 		kb.press(Key.ctrl)
 		kb.press('a')
