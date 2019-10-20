@@ -2,6 +2,7 @@ from pynput import keyboard
 from pynput.keyboard import Key, Controller
 import sys
 import win32clipboard
+import time
 
 # The currently active modifiers
 current = set()
@@ -32,16 +33,25 @@ def req():
 		cleaning = data.strip('\r')
 		
 		#Fills out affected end user and tabs down to assignee
-		kb.type(f"{em_list[-1]}, {em_list[0]}\t\t\t\t\t\tLogue, Shane\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		kb.type(f"{em_list[-1]}, {em_list[0]}")
+		time.sleep(.5)
+		kb.type("\t\t\t\t\t\tLogue, Shane")
+		time.sleep(.5)
+		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
 		#This write out each line that is found in the clipboard. Had to do it this way as kb.type was inserting random new lines.
 		#This way hopefully prevents this from happening
+		kb.press(Key.ctrl)
+		kb.press('a')
+		kb.release('a')
+		kb.release(Key.ctrl)
+		time.sleep(1)
 		for item in cleaning:
 			clean = item.strip('\n')
 			kb.type(rf"{clean}")
 			pass
 		print(f"{data}")
-	except:
-		pass
+	except Exception as e:
+		print(e)
 	
 def incident():
 	try:
@@ -62,14 +72,23 @@ def incident():
 
 		cleaning = data.strip('\r')
 
-		kb.type(f"{em_list[-1]}, {em_list[0]}\t\t\t\t\t\tLogue, Shane\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		kb.type(f"{em_list[-1]}, {em_list[0]}")
+		time.sleep(.5)
+		kb.type("\t\t\t\t\t\tLogue, Shane")
+		time.sleep(.5)
+		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		kb.press(Key.ctrl)
+		kb.press('a')
+		kb.release('a')
+		kb.release(Key.ctrl)
+		time.sleep(1)
 		for item in cleaning:
 			clean = item.strip('\n')
 			kb.type(rf"{clean}")
 			pass
 		print(f"{data}")
-	except:
-		pass
+	except Exception as e:
+		print(e)
 
 #Check what each key does
 def on_press(key):
