@@ -12,4 +12,6 @@ Issues:
 
 - Affected end user cannot be found then this will mess with the inputs and and will not fill out the ticket
 
--Sometimes when program is writing out ticket, it does not insert new lines
+- Sometimes when program is writing out ticket, it does not insert new lines
+
+- Assigning to the wrong person
