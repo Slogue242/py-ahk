@@ -36,9 +36,18 @@ def req():
 		#Have put time.sleep in to let R12 load data properly. Found script would sometimes fail because it didn't load fast enough.
 		kb.type(f"{em_list[-1]}, {em_list[0]}")
 		time.sleep(1)
-		kb.type("\t\t\t\t\t\tLogue, Shane")
+		#6 tabs
+		tab_count = 0
+		while tab_count < 6:
+			kb.type("\t")
+			tab_count += 1
+		kb.type("Logue, Shane")
 		time.sleep(1)
-		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		tab_counter = 0
+		while tab_counter < 19:
+			kb.type("\t")
+			tab_counter += 1
+		#19 tabs
 		#This write out each line that is found in the clipboard. Had to do it this way as kb.type was inserting random new lines.
 		#This way hopefully prevents this from happening
 		kb.press(Key.ctrl)
@@ -75,9 +84,17 @@ def incident():
 
 		kb.type(f"{em_list[-1]}, {em_list[0]}")
 		time.sleep(1)
-		kb.type("\t\t\t\t\t\tLogue, Shane")
+		tab_count = 0
+		while tab_count < 6:
+			kb.type("\t")
+			tab_count += 1
+		kb.type("Logue, Shane")
 		time.sleep(1)
-		kb.type("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")
+		#tab 23
+		tab_counter = 0
+		while tab_counter < 23:
+			kb.type("\t")
+			tab_counter += 1
 		kb.press(Key.ctrl)
 		kb.press('a')
 		kb.release('a')
